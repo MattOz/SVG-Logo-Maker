@@ -1,13 +1,19 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
-const genLogo = require('./lib/genLogo');
+const genLogo = require('./genLogo');
 
 inquirer.prompt([
         {
             type: 'input',
             message: 'Enter characters (3 max)',
             name: 'characters',
-        }
+        },
+        {
+            type: 'list',
+            message: 'Select shape',
+            choices: ["Circle","Square","Triangle"],
+            name: 'shape',
+          },
 ])
 .then((response) => {
     fs.writeFile(`logo.svg`,genLogo(response) , (err) =>
