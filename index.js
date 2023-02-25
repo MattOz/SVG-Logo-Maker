@@ -1,7 +1,9 @@
+//imports
 const fs = require('fs');
 const inquirer = require('inquirer');
 const genLogo = require('./genLogo');
 
+//command line prompts for 
 inquirer.prompt([
   {
     type: 'input',
@@ -9,9 +11,8 @@ inquirer.prompt([
     name: 'characters',
   },
   {
-    type: 'list',
-    message: 'Select text color',
-    choices: ["red","green","blue","black","white"],
+    type: 'input',
+    message: 'Enter color keyword or hex code for font color',
     name: 'textColor',
   },
   {
@@ -21,13 +22,12 @@ inquirer.prompt([
     name: 'shape',
   },
   {
-    type: 'list',
-    message: 'Select shape color',
-    choices: ["red","green","blue","black","white"],
+    type: 'input',
+    message: 'Enter color keyword or hex code for background color',
     name: 'shapeColor',
   },
 ])
-
+//generating logo with response data
 .then((response) => {
     fs.writeFile(`logo.svg`,genLogo(response) , (err) =>
     err ? console.error(err) : console.log('Generated logo.svg'))

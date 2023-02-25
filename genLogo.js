@@ -1,24 +1,33 @@
+//imports
+const { Square, Triangle, Circle } = require("./lib/shapes");
+const SVG = require("./lib/svg");
+
+//generates logo based on response data
 function genLogo(response) {    
 
+    const userSVG = new SVG();
+    userSVG.setText(response.characters, response.textColor);
+
+    //generates circle
     if (response.shape === "Circle") {
-        response.shape = `<circle cx="150" cy="100" r="80" fill="${response.shapeColor}"/>`
+        const circle = new Circle(response.characters, response.textColor, response.shapeColor);
+        userSVG.setShape(circle);
     }
 
+    //generates square
     if (response.shape === "Square") {
-        response.shape = `<rect x="75" y="25" width="150" height="150" fill="${response.shapeColor}"/> `
+        const square = new Square(response.characters, response.textColor, response.shapeColor);
+        userSVG.setShape(square);
     }
 
+    //generates triangle
     if (response.shape === "Triangle") {
-        response.shape = `<polygon points="150,25 275,150 25,150" fill="${response.shapeColor}"/>`
+        const triangle = new Triangle(response.characters, response.textColor, response.shapeColor);
+        userSVG.setShape(triangle);
     }
 
-    return `<svg version="1.1" width="300" height="200">
-
-    ${response.shape}
-  
-    <text x="150" y="125" font-size="60" text-anchor="middle" fill="${response.textColor}">${response.characters}</text>
-  
-    </svg>`
+    //returns final svg
+    return userSVG.render()
 }
 
 module.exports = genLogo;

@@ -11,6 +11,8 @@ A command line application that crates simple svg logos based on user input.
 - [Tests](#tests)
 - [Questions](#questions)
 
+![Gif](./examples/Untitled_%20Feb%2025%2C%202023%204_23%20PM.gif)
+
 ## Installation
 Make sure to run npm i before use. This app's dependencies include inquirer and jest.
 ## Usage
